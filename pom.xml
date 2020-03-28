@@ -15,6 +15,7 @@
         <module>changgou_service_api</module>
         <module>changgou_web</module>
         <module>changgou_eureka</module>
+        <module>changgou_common</module>
     </modules>
 
     <parent>
