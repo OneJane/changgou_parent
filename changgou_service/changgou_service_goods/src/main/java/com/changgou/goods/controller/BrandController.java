@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /*****
  * @Author: www.itheima.com
@@ -114,5 +115,16 @@ public class BrandController {
         //调用Service查询所有
         List<Brand> brands = brandService.findAll();
         return new Result<List<Brand>>(true, StatusCode.OK,"查询品牌集合成功！",brands);
+    }
+
+    /***
+     * 根据分类名称查询品牌列表
+     * @param categoryName
+     * @return
+     */
+    @GetMapping("/category/{categoryName}")
+    public Result<List<Map>> findBrandListByCategoryName(@PathVariable("categoryName")String categoryName){
+        List<Map> brandList = brandService.findBrandListByCategoryName(categoryName);
+        return new Result<>(true,StatusCode.OK,"查询成功",brandList);
     }
 }

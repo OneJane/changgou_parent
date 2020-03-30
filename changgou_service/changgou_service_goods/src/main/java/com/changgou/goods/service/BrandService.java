@@ -4,6 +4,7 @@ import com.changgou.goods.pojo.Brand;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /*****
  * @Author: www.itheima.com
@@ -66,4 +67,11 @@ public interface BrandService {
      * @return List<Brand>
      */
     List<Brand> findAll();
+
+    /**
+     * 根据分类名称查询品牌列表
+     * @param categoryName
+     * @return
+     */
+    public List<Map> findBrandListByCategoryName(String categoryName);
 }

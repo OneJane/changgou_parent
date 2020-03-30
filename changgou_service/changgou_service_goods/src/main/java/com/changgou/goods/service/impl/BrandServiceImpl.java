@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Map;
 
 /*****
  * @Author: www.itheima.com
@@ -158,5 +159,12 @@ public class BrandServiceImpl implements BrandService {
     public List<Brand> findAll() {
         //使用通用Mapper查询所有
         return brandMapper.selectAll();
+    }
+
+
+    @Override
+    public List<Map> findBrandListByCategoryName(String categoryName) {
+        List<Map> brandList = brandMapper.findBrandListByCategoryName(categoryName);
+        return brandList;
     }
 }
