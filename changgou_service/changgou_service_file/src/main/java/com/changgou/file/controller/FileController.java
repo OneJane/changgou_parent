@@ -32,6 +32,8 @@ public class FileController {
      *             root html;
      *         }
      *     }
+     * docker update --restart always storage
+     * docker update --restart always tracker
      * @param file
      * @return
      */

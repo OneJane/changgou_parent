@@ -1,50 +1,50 @@
 package com.changgou.goods.service;
 
-import com.changgou.goods.pojo.Brand;
+import com.changgou.goods.pojo.Spu;
 import com.github.pagehelper.Page;
 
 import java.util.List;
 import java.util.Map;
 
-public interface BrandService {
+public interface SpuService {
 
     /***
      * 查询所有
      * @return
      */
-    List<Brand> findAll();
+    List<Spu> findAll();
 
     /**
      * 根据ID查询
      * @param id
      * @return
      */
-    Brand findById(Integer id);
+    Spu findById(String id);
 
     /***
      * 新增
-     * @param brand
+     * @param spu
      */
-    void add(Brand brand);
+    void add(Spu spu);
 
     /***
      * 修改
-     * @param brand
+     * @param spu
      */
-    void update(Brand brand);
+    void update(Spu spu);
 
     /***
      * 删除
      * @param id
      */
-    void delete(Integer id);
+    void delete(String id);
 
     /***
      * 多条件搜索
      * @param searchMap
      * @return
      */
-    List<Brand> findList(Map<String, Object> searchMap);
+    List<Spu> findList(Map<String, Object> searchMap);
 
     /***
      * 分页查询
@@ -52,7 +52,7 @@ public interface BrandService {
      * @param size
      * @return
      */
-    Page<Brand> findPage(int page, int size);
+    Page<Spu> findPage(int page, int size);
 
     /***
      * 多条件分页查询
@@ -61,14 +61,9 @@ public interface BrandService {
      * @param size
      * @return
      */
-    Page<Brand> findPage(Map<String, Object> searchMap, int page, int size);
+    Page<Spu> findPage(Map<String, Object> searchMap, int page, int size);
 
-    /**
-     * 根据分类名称查询品牌列表
-     * @param categoryName
-     * @return
-     */
-    public List<Map> findBrandListByCategoryName(String categoryName);
+
 
 
 }

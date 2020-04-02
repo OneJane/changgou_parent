@@ -1,12 +1,10 @@
-package ${package_pojo};
-<#if swagger==true>
-import io.swagger.annotations.ApiModel;
+package $ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+{package_pojo};
+<#if swagger==true>
 </#if>
-import javax.persistence.*;
-import java.io.Serializable;
-<#list typeSet as set>
-import ${set};
+<#list typeSet as set>{set};
 </#list>
 /****
  * @Author:传智播客

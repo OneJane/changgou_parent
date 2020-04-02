@@ -1,14 +1,12 @@
 package com.changgou.goods.controller;
-
-import com.changgou.goods.pojo.Spec;
-import com.changgou.goods.service.SpecService;
-import com.github.pagehelper.Page;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import com.changgou.goods.service.SpecService;
+import com.changgou.goods.pojo.Spec;
+import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 @RestController
@@ -87,7 +85,7 @@ public class SpecController {
     @GetMapping(value = "/search" )
     public Result findList(@RequestParam Map searchMap){
         List<Spec> list = specService.findList(searchMap);
-        return new Result(true, StatusCode.OK,"查询成功",list);
+        return new Result(true,StatusCode.OK,"查询成功",list);
     }
 
 
