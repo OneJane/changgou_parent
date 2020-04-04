@@ -18,6 +18,12 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    // http://localhost:18081/category/list/0
+    @GetMapping(value="/list/{pid}")
+    public Result<List<Category>> findByParentId(@PathVariable(value = "pid")Integer pid){
+        List<Category> categories = categoryService.findByParentId(pid);
+        return new Result<>(true,StatusCode.OK,"查询子节点成功",categories);
+    }
     /**
      * 查询全部数据
      * @return

@@ -105,6 +105,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
+     * 根据分类父节点id查询所有子节点集合
+     * @param pid 父节点id->1级分类=0
+     * @return
+     */
+    @Override
+    public List<Category> findByParentId(Integer pid) {
+        // 根据父id查询 select * from tb_category where parent_id=#{pid}
+        // 封装一个javabean 如果该javabean 指定属性不为空，则会指定属性作为查询条件
+        Category category = new Category();
+        category.setParentId(pid);
+        return categoryMapper.select(category);
+    }
+
+    /**
      * 构建查询对象
      * @param searchMap
      * @return

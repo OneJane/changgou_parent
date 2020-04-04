@@ -1,12 +1,15 @@
 package com.changgou.goods.controller;
+
+import com.changgou.goods.pojo.Goods;
+import com.changgou.goods.pojo.Spu;
+import com.changgou.goods.service.SpuService;
+import com.github.pagehelper.Page;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
-import com.changgou.goods.service.SpuService;
-import com.changgou.goods.pojo.Spu;
-import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
 @RestController
@@ -17,6 +20,67 @@ public class SpuController {
 
     @Autowired
     private SpuService spuService;
+
+
+    /**
+     * 商品批量上架
+     * @param ids
+     * @return
+     */
+    @PutMapping("/put/many")
+    public Result putManySpu(@RequestBody Long[] ids){
+        spuService.putMany(ids);
+        return new Result(true,StatusCode.OK,"上架成功");
+    }
+
+    /**
+     * 商品上架
+     * @param id
+     * @return
+     */
+    @PutMapping("/put/{id}")
+    public Result putSpu(@PathVariable(name="id")Long id){
+        spuService.putSpu(id);
+        return new Result(true,StatusCode.OK,"上架成功");
+    }
+
+
+    /**
+     * 商品下架
+     * @param id
+     * @return
+     */
+    @PutMapping("/pull/{id}")
+    public Result pullSpu(@PathVariable(name="id")Long id){
+        spuService.pullSpu(id);
+        return new Result(true,StatusCode.OK,"下架成功");
+    }
+
+    /**
+     * //审核商品 自动上架
+     * @param id  spu的ID
+     * @return
+     */
+    @PutMapping("/audit/{id}")
+    public Result auditSpu(@PathVariable(name="id")Long id){
+        spuService.auditSpu(id);
+        return new Result(true,StatusCode.OK,"审核通过");
+    }
+    /**
+     * Goods(SPU+SKU)增加方法详情
+     */
+    @PostMapping("/save")
+    public Result save(@RequestBody Goods goods){
+        spuService.saveGoods(goods);
+        return new Result(true,StatusCode.OK,"保存商品成功",null);
+    }
+
+    // http://localhost:18081/spu/goods/1146722014917144576
+    @GetMapping(value = "goods/{id}")
+    public Result<Goods> findGoodsById(@PathVariable(value = "id")Long spuId){
+        Goods goods = spuService.findGoodsById(spuId);
+        return new Result<>(true,StatusCode.OK,"查询Goods成功",goods);
+    }
 
     /**
      * 查询全部数据
@@ -60,7 +124,7 @@ public class SpuController {
      */
     @PutMapping(value="/{id}")
     public Result update(@RequestBody Spu spu,@PathVariable String id){
-        spu.setId(id);
+        spu.setId(Long.parseLong(id));
         spuService.update(spu);
         return new Result(true,StatusCode.OK,"修改成功");
     }

@@ -1,5 +1,6 @@
 package com.changgou.goods.service;
 
+import com.changgou.goods.pojo.Goods;
 import com.changgou.goods.pojo.Spu;
 import com.github.pagehelper.Page;
 
@@ -7,6 +8,42 @@ import java.util.List;
 import java.util.Map;
 
 public interface SpuService {
+
+
+    /**
+     * 批量上架
+     * @param spuid 要上架的所有spuid
+     */
+    void putMany(Long[] spuid);
+    /**
+     * 上架
+     * @param id
+     */
+    void putSpu(Long id);
+
+    /**
+     * 下架
+     * @param id
+     */
+    void pullSpu(Long id);
+    /**
+     * 商品审核
+     * @param id spu的id
+     */
+    void auditSpu(Long id);
+    /**
+     * 根据id查询spu与sku列表信息
+     * @param id
+     * @return
+     */
+    Goods findGoodsById(long id);
+
+    /**
+     * 商品增加
+     *
+     * @param goods
+     */
+    void saveGoods(Goods goods);
 
     /***
      * 查询所有
@@ -16,6 +53,7 @@ public interface SpuService {
 
     /**
      * 根据ID查询
+     *
      * @param id
      * @return
      */
@@ -62,8 +100,6 @@ public interface SpuService {
      * @return
      */
     Page<Spu> findPage(Map<String, Object> searchMap, int page, int size);
-
-
 
 
 }

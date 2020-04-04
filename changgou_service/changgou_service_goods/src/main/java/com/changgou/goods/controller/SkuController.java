@@ -60,7 +60,7 @@ public class SkuController {
      */
     @PutMapping(value="/{id}")
     public Result update(@RequestBody Sku sku,@PathVariable String id){
-        sku.setId(id);
+        sku.setId(Long.parseLong(id));
         skuService.update(sku);
         return new Result(true,StatusCode.OK,"修改成功");
     }

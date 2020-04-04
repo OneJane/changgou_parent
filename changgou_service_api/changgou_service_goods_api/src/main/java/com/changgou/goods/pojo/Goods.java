@@ -9,7 +9,7 @@ import java.util.List;
  * 商品组合实体类
  */
 @ApiModel(description = "商品信息")
-public class Goods implements Serializable {
+public class  Goods implements Serializable {
     //SPU
     private Spu spu;
     //SKU集合

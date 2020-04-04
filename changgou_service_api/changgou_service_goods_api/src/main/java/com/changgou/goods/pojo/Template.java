@@ -50,6 +50,4 @@ public class Template implements Serializable {
 		this.paraNum = paraNum;
 	}
 
-
-
 }

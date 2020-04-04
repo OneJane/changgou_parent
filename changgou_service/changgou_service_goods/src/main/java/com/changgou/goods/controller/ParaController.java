@@ -18,6 +18,13 @@ public class ParaController {
     @Autowired
     private ParaService paraService;
 
+    //http://localhost:18081/para/category/11156
+    @GetMapping(value = "/category/{id}")
+    public Result<List<Para>> findByCategoryId(@PathVariable(value = "id")Integer categoryId){
+        List<Para> paraList = paraService.findByCategory(categoryId);
+        return new Result<>(true,StatusCode.OK,"查询参数集合成功！",paraList);
+    }
+
     /**
      * 查询全部数据
      * @return

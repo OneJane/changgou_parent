@@ -8,6 +8,13 @@ import java.util.Map;
 
 public interface SpecService {
 
+    /**
+     * 分类id->template_id 根据template_id 查询规格集合
+     * @param categoryId
+     * @return
+     */
+    List<Spec> findByCategory(Integer categoryId);
+
     /***
      * 查询所有
      * @return

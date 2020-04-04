@@ -20,6 +20,15 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+
+    // http://localhost:18081/brand/category/11156
+    @GetMapping(value="/category/{id}")
+    public Result<List<Brand>> findBrandByCategory(@PathVariable(value = "id")Integer categoryId){
+        List<Brand> brands = brandService.findByCategory(categoryId);
+        return new Result<>(true,StatusCode.OK,"查询成功",brands);
+    }
+
+
     /**
      * 查询全部数据
      * @return
@@ -105,7 +114,7 @@ public class BrandController {
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
 
-    @GetMapping("/category/{categoryName}")
+//    @GetMapping("/category/{categoryName}")
     public Result<List<Map>> findBrandListByCategoryName(@PathVariable("categoryName")String categoryName){
         List<Map> brandList = brandService.findBrandListByCategoryName(categoryName);
         return new Result<>(true,StatusCode.OK,"查询成功",brandList);

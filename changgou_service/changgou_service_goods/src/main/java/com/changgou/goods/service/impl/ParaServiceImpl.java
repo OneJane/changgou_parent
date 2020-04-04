@@ -1,8 +1,10 @@
 package com.changgou.goods.service.impl;
 
+import com.changgou.goods.dao.CategoryMapper;
 import com.changgou.goods.dao.ParaMapper;
-import com.changgou.goods.service.ParaService;
+import com.changgou.goods.pojo.Category;
 import com.changgou.goods.pojo.Para;
+import com.changgou.goods.service.ParaService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,23 @@ public class ParaServiceImpl implements ParaService {
 
     @Autowired
     private ParaMapper paraMapper;
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    /**
+     * 根据分类id查询参数集合->分类的template_id->根据template_id查询参数集合
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<Para> findByCategory(Integer categoryId) {
+        // 查询分类数据，获取template_id
+        Category category = categoryMapper.selectByPrimaryKey(categoryId);
+        // 根据template_id查询参数集合
+        Para para = new Para();
+        para.setTemplateId(category.getTemplateId());
+        return paraMapper.select(para);
+    }
 
     /**
      * 查询全部列表
