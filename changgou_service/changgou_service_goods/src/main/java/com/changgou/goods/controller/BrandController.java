@@ -30,11 +30,19 @@ public class BrandController {
 
 
     /**
-     * 查询全部数据
+     * 查询全部数据 sleep强制阻塞，产生并发
+     * http://10.33.72.96/brand
      * @return
      */
     @GetMapping
     public Result findAll(){
+        try {
+            System.out.println("准备睡觉"+Thread.currentThread().getId());
+            Thread.sleep(10000);
+            System.out.println("睡觉结束"+Thread.currentThread().getId());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<Brand> brandList = brandService.findAll();
         return new Result(true, StatusCode.OK,"查询成功",brandList) ;
     }
