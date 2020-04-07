@@ -36,13 +36,13 @@ public class BrandController {
      */
     @GetMapping
     public Result findAll(){
-        try {
-            System.out.println("准备睡觉"+Thread.currentThread().getId());
-            Thread.sleep(10000);
-            System.out.println("睡觉结束"+Thread.currentThread().getId());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println("准备睡觉"+Thread.currentThread().getId());
+//            Thread.sleep(10000);
+//            System.out.println("睡觉结束"+Thread.currentThread().getId());
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         List<Brand> brandList = brandService.findAll();
         return new Result(true, StatusCode.OK,"查询成功",brandList) ;
     }
