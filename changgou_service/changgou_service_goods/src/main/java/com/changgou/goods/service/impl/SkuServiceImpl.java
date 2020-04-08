@@ -187,4 +187,12 @@ public class SkuServiceImpl implements SkuService {
         return example;
     }
 
+    @Override
+    public List<Sku> findByStatus(String status) {
+        //select * from sku where status=1
+        Sku condition = new Sku();
+        condition.setStatus(status);
+        return skuMapper.select(condition);
+    }
+
 }

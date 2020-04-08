@@ -64,6 +64,12 @@ public interface SkuService {
     Page<Sku> findPage(Map<String, Object> searchMap, int page, int size);
 
 
+    /**
+     * 查询符合条件的eSKU的列表数据
+     * @param status
+     * @return
+     */
+    List<Sku> findByStatus(String status);
 
 
 }
